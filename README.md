@@ -55,7 +55,6 @@ The main app source code lives in a private repo.
 
 **Sushant Joshi**
 - GitHub: [github.com/sushant-joshi](https://github.com/sushant-joshi)
-- Blog: [Neural Blueprints](https://sushant-joshi.github.io/neural-blueprints/)
 
 ---
 
