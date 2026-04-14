@@ -60,7 +60,7 @@ The main app source code lives in a private repo.
 
 ## Contact
 
-📧 lifereminders@sushantjoshi.com
+📧 sushantjdeveloper@gmail.com
 
 ---
 
