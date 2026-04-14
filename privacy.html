@@ -16,55 +16,128 @@
         }
         h1 { font-size: 28px; margin-bottom: 4px; }
         h2 { font-size: 20px; margin-top: 32px; }
+        h3 { font-size: 16px; margin-top: 20px; color: #3B82F6; }
         .updated { color: #86868b; font-size: 14px; margin-bottom: 32px; }
         ul { padding-left: 20px; }
         li { margin-bottom: 8px; }
         .highlight { background: #f5f5f7; padding: 16px; border-radius: 12px; margin: 16px 0; }
+        .platform-tag {
+            display: inline-block;
+            background: #e0e0e5;
+            color: #1d1d1f;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        a { color: #0066cc; }
     </style>
 </head>
 <body>
     <h1>Life Reminders Privacy Policy</h1>
-    <p class="updated">Last updated: April 11, 2026</p>
+    <p class="updated">Last updated: April 13, 2026</p>
 
     <div class="highlight">
-        <strong>In short:</strong> Life Reminders stores all your data on your device (and optionally in your personal iCloud for Pro users). We don't collect, transmit, or sell your personal information. Voice processing happens entirely on-device.
+        <strong>In short:</strong> Life Reminders stores all your data on your device. We don't have accounts, we don't collect, we don't transmit, and we don't sell your personal information. Voice processing happens on-device on iOS and modern Android. The only optional opt-in features that touch the network are iCloud sync (Apple Pro tier) and Google Mobile Ads (the ad-supported tier on Android).
     </div>
 
-    <h2>Data Storage</h2>
-    <p>All reminders, family member profiles, and settings are stored locally on your device using Apple's SwiftData framework. Your data is not uploaded to any server owned or operated by us.</p>
+    <p>This policy applies to <strong>Life Reminders</strong> on iPhone, iPad, Mac, Apple Watch, and Android. Both apps are built by the same developer using the same privacy principles. Where the implementation differs between platforms, it's called out explicitly below.</p>
 
-    <h2>iCloud Sync (Pro Plan Only)</h2>
-    <p>If you upgrade to Life Reminders Pro, your reminders sync across your iPhone, iPad, Mac, and Apple Watch using Apple's CloudKit framework. This data is stored in your personal private iCloud database, which only you can access. We do not have access to your iCloud data.</p>
-    <p>iCloud sync is governed entirely by Apple under <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. You can disable iCloud sync at any time by signing out of iCloud or disabling iCloud Drive for Life Reminders in your device settings.</p>
-    <p>The Free and Ad-Supported plans do not use iCloud sync — data stays local to a single device.</p>
+    <h2>Data we store on your device</h2>
+    <p>Everything you create in the app stays on the device that created it (with the optional sync exception described later):</p>
+    <ul>
+        <li>Reminders you add — title, date, category, notes, recurrence, alerts, optional family member tag</li>
+        <li>Family members — name, emoji, color</li>
+        <li>App preferences — onboarding state, default alert time, monetization tier</li>
+        <li>Voice transcripts — temporarily, only long enough to populate a new-reminder form. Not retained after the form is saved or dismissed.</li>
+    </ul>
 
-    <h2>Voice Input</h2>
-    <p>Life Reminders uses Apple's on-device speech recognition (SFSpeechRecognizer) to convert your voice into text. All voice processing happens locally on your device. No audio recordings or transcripts are sent to our servers or any third party. Voice input is available on iPhone, iPad, and Mac.</p>
+    <h3><span class="platform-tag">iOS</span> Storage backend</h3>
+    <p>Apple's SwiftData framework (Core Data under the hood). Your data lives in the app's private container.</p>
+
+    <h3><span class="platform-tag">Android</span> Storage backend</h3>
+    <p>Android Room (SQLite under the hood). Your data lives in the app's private storage area, inaccessible to other apps.</p>
+
+    <h2>Voice input</h2>
+    <p>Tapping the microphone uses your platform's speech recognition framework to convert what you say into text:</p>
+
+    <h3><span class="platform-tag">iOS</span> SFSpeechRecognizer</h3>
+    <p>Apple's on-device speech recognition. All voice processing happens locally on your device. No audio recordings or transcripts are sent to our servers or to Apple's servers when on-device mode is selected (the default). Available on iPhone, iPad, and Mac.</p>
+
+    <h3><span class="platform-tag">Android</span> Android SpeechRecognizer</h3>
+    <p>On Android 12 (API 31) and newer, the app explicitly requests the system's <strong>on-device</strong> recognizer (<code>createOnDeviceSpeechRecognizer</code>), which guarantees your voice audio never leaves your phone. On Android 8 through 11, the app requests offline-preferred recognition via the <code>EXTRA_PREFER_OFFLINE</code> hint, which most modern device manufacturers honor — but it is technically OEM-dependent. If your device falls back to Google's cloud speech service, that audio is processed by Google under their privacy policy and is not retained by Life Reminders.</p>
 
     <h2>Notifications</h2>
-    <p>Life Reminders uses Apple's local notification system to send you reminders. These notifications are scheduled entirely on your device. No push notification server is involved. Each device (iPhone, iPad, Mac, Apple Watch) schedules its own local notifications from your synced reminder data.</p>
+    <p>All reminder notifications are scheduled and delivered <strong>locally</strong> by your device's operating system. They are not sent through any server, push notification provider, or third party we operate.</p>
+    <ul>
+        <li><span class="platform-tag">iOS</span> Apple's local UNUserNotificationCenter</li>
+        <li><span class="platform-tag">Android</span> Android AlarmManager + NotificationCompat</li>
+    </ul>
+    <p>On Android 13 and newer, you'll be asked to grant notification permission once during the welcome tour. You can change this any time in Settings → Notifications.</p>
 
-    <h2>Advertising (Ad-Supported Plan)</h2>
-    <p>If you choose the free ad-supported plan on iPhone or iPad, Life Reminders displays banner advertisements provided by Google AdMob. Google may collect and use certain device information (such as advertising identifiers) to serve relevant ads. This data collection is governed by <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
-    <p>You can opt out of personalized advertising through your device's privacy settings (Settings &gt; Privacy &amp; Security &gt; Tracking).</p>
-    <p>The Free plan (without ads), the Pro plan, and the Mac/Apple Watch versions do not display any advertisements and do not share any data with advertising networks.</p>
+    <h2>Optional opt-in features (disabled by default)</h2>
 
-    <h2>Analytics &amp; Tracking</h2>
-    <p>Life Reminders does not include any analytics SDKs, crash reporting tools, or user tracking mechanisms beyond what is required for ad delivery in the ad-supported plan.</p>
+    <h3><span class="platform-tag">iOS Pro</span> iCloud Sync</h3>
+    <p>If you upgrade to Life Reminders Pro on iOS, your reminders sync across iPhone, iPad, Mac, and Apple Watch using Apple's CloudKit framework. The data is stored in <em>your personal private iCloud database</em>, which only you can access. We do not have access to your iCloud data — even Apple does not, beyond the encrypted blobs they store on your behalf.</p>
+    <p>iCloud sync is governed entirely by Apple under <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. You can disable iCloud sync at any time by signing out of iCloud or disabling iCloud Drive for Life Reminders in your device settings.</p>
+    <p>iCloud sync is not available on Android (yet — see below).</p>
 
-    <h2>In-App Purchases</h2>
-    <p>Life Reminders Pro is available as a one-time in-app purchase processed entirely through Apple's App Store. We do not collect or have access to your payment information.</p>
+    <h3><span class="platform-tag">Coming v1.1</span> Cross-platform sync</h3>
+    <p>An optional Google Drive-based sync between Android and iOS is planned for version 1.1. It will use your own personal Google Drive's app-only folder (invisible to other apps and to us) and will be end-to-end encrypted. It will be opt-in only and disabled by default. This feature is not yet available.</p>
 
-    <h2>Data Sharing</h2>
-    <p>We do not sell, trade, or transfer your personal information to any third party. The only exception is the advertising data described above, which applies only to the iOS ad-supported plan.</p>
+    <h3><span class="platform-tag">iOS Ad-Supported</span> Google Mobile Ads (banner)</h3>
+    <p>If you choose the iOS Ad-Supported tier, the app displays a banner advertisement provided by Google AdMob. Google may collect device identifiers and approximate location to serve relevant ads. This is governed by <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. You can opt out of personalized advertising via iOS Settings → Privacy &amp; Security → Tracking, and you can switch back to the Free or Pro tier at any time to disable ads.</p>
 
-    <h2>Children's Privacy</h2>
-    <p>Life Reminders does not knowingly collect personal information from children under 13. The app is designed as a general-purpose reminder tool for all ages.</p>
+    <h3><span class="platform-tag">Android Ad-Supported</span> Google Mobile Ads (Native Advanced)</h3>
+    <p>If you choose the Android Ad-Supported tier, the app displays a single Native Advanced ad styled to match the dashboard. The ad is clearly labeled "Ad" per Google's policy. Google may collect device identifiers and approximate location to serve relevant ads. This is governed by <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. You can switch back to the Free or Pro tier at any time to disable ads.</p>
 
-    <h2>Changes to This Policy</h2>
-    <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated date.</p>
+    <h2>Analytics &amp; tracking</h2>
+    <p><strong>We don't include any analytics SDKs, crash reporting tools, or user tracking mechanisms in either app</strong> beyond what is required for ad delivery in the optional ad-supported tiers above. We do not know how many active users we have. We do not know which features you use. We do not know which categories you create. By design.</p>
+
+    <h2>In-app purchases</h2>
+    <p>Life Reminders Pro is a one-time in-app purchase processed entirely through your platform's billing system:</p>
+    <ul>
+        <li><span class="platform-tag">iOS</span> Apple StoreKit (App Store)</li>
+        <li><span class="platform-tag">Android</span> Google Play Billing</li>
+    </ul>
+    <p>We do not collect or have access to your payment information. Pro is Family Sharing compatible on both platforms — buy it once on either store and your family members can install it for free under the same Apple Family or Google Play Family.</p>
+
+    <h2>Data sharing</h2>
+    <p>We do not sell, trade, or transfer your personal information to any third party. The only exception is the advertising data described above, which applies only to the Ad-Supported tier and is handled directly by Google's advertising SDK. Free, Pro, Mac, and Apple Watch experiences do not display any advertisements and do not share any data with advertising networks.</p>
+
+    <h2>Permissions we request</h2>
+
+    <h3><span class="platform-tag">iOS</span></h3>
+    <ul>
+        <li><strong>Microphone</strong> — only when you tap the voice-input button</li>
+        <li><strong>Speech recognition</strong> — for the on-device transcription</li>
+        <li><strong>Notifications</strong> — to deliver reminders</li>
+    </ul>
+
+    <h3><span class="platform-tag">Android</span></h3>
+    <ul>
+        <li><strong>RECORD_AUDIO</strong> — only when you use the voice-input button</li>
+        <li><strong>POST_NOTIFICATIONS</strong> (Android 13+) — to deliver reminders. Asked once during the welcome tour.</li>
+        <li><strong>SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM</strong> — for precise reminder timing (e.g., a class at 4 PM with a 1-hour pre-alert)</li>
+        <li><strong>RECEIVE_BOOT_COMPLETED</strong> — to re-schedule reminders after device reboot, since Android forgets the alarm queue across reboots</li>
+        <li><strong>INTERNET / ACCESS_NETWORK_STATE</strong> — only used by the optional opt-in features above (AdMob ads, future Drive sync)</li>
+    </ul>
+
+    <h2>Children's privacy</h2>
+    <p>Life Reminders is not directed at children under 13. We do not knowingly collect any data from children. The app is designed as a general-purpose reminder tool for all ages.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated date at the top. Substantial changes will surface in the in-app onboarding tour the next time you open the app.</p>
 
     <h2>Contact</h2>
-    <p>If you have questions about this privacy policy, contact us at: <strong>lifereminders@sushantjoshi.com</strong></p>
+    <p>Questions about this privacy policy? Email: <strong>lifereminders@sushantjoshi.com</strong></p>
+    <p>Or open an issue at:</p>
+    <ul>
+        <li>iOS: <a href="https://github.com/sushant-joshi/LifeReminders">github.com/sushant-joshi/LifeReminders</a></li>
+        <li>Android: <a href="https://github.com/sushant-joshi/LifeRemindersAndroid">github.com/sushant-joshi/LifeRemindersAndroid</a></li>
+    </ul>
+
+    <p style="margin-top:40px; text-align:center;"><a href="index.html">← Back to Life Reminders</a> &middot; <a href="support.html">Support</a></p>
 </body>
 </html>

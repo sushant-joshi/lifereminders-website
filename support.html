@@ -43,84 +43,126 @@
             font-weight: 600;
             margin-right: 4px;
         }
+        .platform-tag.ios { background: #e0e7ff; color: #1e3a8a; }
+        .platform-tag.android { background: #d1fae5; color: #065f46; }
+        .platform-tag.both { background: #fef3c7; color: #92400e; }
     </style>
 </head>
 <body>
     <h1>Life Reminders Support</h1>
-    <p class="subtitle">Smart Life Deadline Tracker · iPhone · iPad · Mac · Apple Watch</p>
+    <p class="subtitle">Smart Life Deadline Tracker · iPhone · iPad · Mac · Apple Watch · Android</p>
 
     <h2>Getting Started</h2>
     <div class="card">
         <h3>Adding Reminders</h3>
         <ul>
-            <li><span class="platform-tag">iPhone</span> <span class="platform-tag">iPad</span> Tap the blue mic button (voice) or keyboard button (manual)</li>
-            <li><span class="platform-tag">Mac</span> Click the mic icon in the toolbar (Cmd+R) or + icon (Cmd+N)</li>
-            <li><span class="platform-tag">Apple Watch</span> View and complete reminders created on other devices</li>
+            <li><span class="platform-tag ios">iPhone</span> <span class="platform-tag ios">iPad</span> Tap the blue mic button (voice) or keyboard button (manual)</li>
+            <li><span class="platform-tag ios">Mac</span> Click the mic icon in the toolbar (Cmd+R) or + icon (Cmd+N)</li>
+            <li><span class="platform-tag android">Android</span> Tap the blue mic button (voice) or the smaller + button (manual). Both float at the bottom-right of the Reminders screen.</li>
+            <li><span class="platform-tag ios">Apple Watch</span> View and complete reminders created on other devices</li>
         </ul>
-        <p>Voice example: "Mom's passport expires June 2028" — the app understands category, person, and date automatically.</p>
+        <p>Voice example: "My mom's birthday is on March 13" — the app understands category, person, and date automatically.</p>
     </div>
 
     <div class="card">
         <h3>Three Views</h3>
         <ul>
-            <li><strong>Dashboard</strong> — reminders grouped by urgency</li>
-            <li><strong>Timeline</strong> — reminders grouped by time horizon (week/month/year/5 years/10 years)</li>
-            <li><strong>Calendar</strong> — week, month, or year view with bell indicators on dates with reminders</li>
+            <li><strong>Dashboard</strong> — reminders grouped by urgency (Overdue / Today / This Week / Upcoming / Later)</li>
+            <li><strong>Timeline</strong> — reminders grouped by time horizon (week / month / 3 months / 6 months / year / later)</li>
+            <li><strong>Calendar</strong> — Week, Month, or Year grid with colored dots on dates with reminders. Tap a date to filter the list below.</li>
         </ul>
-        <p><span class="platform-tag">iPhone</span> Swipe left/right on the Reminders tab to switch views.</p>
-        <p><span class="platform-tag">iPad</span> <span class="platform-tag">Mac</span> Use the sidebar to navigate between views.</p>
+        <p><span class="platform-tag ios">iPhone</span> Swipe left/right on the Reminders tab to switch views.</p>
+        <p><span class="platform-tag ios">iPad</span> <span class="platform-tag ios">Mac</span> Use the sidebar to navigate between views.</p>
+        <p><span class="platform-tag android">Android</span> Use the top tab row inside the Reminders bottom-nav destination to switch views.</p>
     </div>
 
     <div class="card">
         <h3>Completing Reminders</h3>
-        <p><span class="platform-tag">iPhone</span> <span class="platform-tag">iPad</span> Swipe right on any reminder to mark it done.</p>
-        <p><span class="platform-tag">Mac</span> Right-click a reminder → Complete, or press Cmd+Return in detail view.</p>
-        <p><span class="platform-tag">Apple Watch</span> Tap the reminder → Done button.</p>
-        <p>Recurring reminders (birthdays, taxes, passport renewals) automatically schedule the next occurrence.</p>
+        <p><span class="platform-tag ios">iPhone</span> <span class="platform-tag ios">iPad</span> Swipe right on any reminder to mark it done.</p>
+        <p><span class="platform-tag ios">Mac</span> Right-click a reminder → Complete, or press Cmd+Return in detail view.</p>
+        <p><span class="platform-tag android">Android</span> Tap any reminder card → "Mark Done & Advance" (recurring) or "Mark Complete" (one-time) in the detail sheet.</p>
+        <p><span class="platform-tag ios">Apple Watch</span> Tap the reminder → Done button.</p>
+        <p>Recurring reminders (birthdays, taxes, passport renewals) automatically schedule the next occurrence — you don't need to re-create them.</p>
     </div>
 
-    <h2>Multi-Device &amp; iCloud Sync</h2>
-    <div class="card">
-        <h3>How does sync work?</h3>
-        <p>Life Reminders Pro uses iCloud to sync your reminders across all your Apple devices. Add a reminder on your iPhone, complete it on your Mac, check it on your Watch — all in real-time.</p>
-        <p>Each device schedules its own local notifications, so you'll get alerts wherever you are.</p>
-    </div>
+    <h2>Notifications</h2>
 
     <div class="card">
-        <h3>Do I need Pro for sync?</h3>
-        <p>Yes. iCloud sync is a Pro feature ($4.99 one-time). The Free and Ad-Supported plans work on a single device only.</p>
+        <h3><span class="platform-tag both">iOS &amp; Android</span> I'm not getting notifications</h3>
+        <p>Open Life Reminders → Settings → Notifications row. It will show "Enabled" or "Disabled — tap to enable."</p>
+        <ul>
+            <li>If it says <strong>Disabled</strong>, tap the row. On Android 13+ this triggers the system permission prompt; on older platforms it opens the system app notification settings.</li>
+            <li>If it says <strong>Enabled</strong> but you still aren't getting alerts, see the battery optimization section below.</li>
+        </ul>
     </div>
-
-    <h2>Frequently Asked Questions</h2>
 
     <div class="card">
-        <h3>Why am I not getting notifications?</h3>
-        <p>Go to Settings (in app) and check Push Notifications is "Enabled." If not, tap "Enable" to open iOS/macOS Settings.</p>
+        <h3><span class="platform-tag android">Android</span> Battery optimization is killing my reminders</h3>
+        <p>Some Android manufacturers (Samsung, Xiaomi, OnePlus, Huawei) aggressively kill background apps to save battery, which prevents AlarmManager from firing reminders on time. Add Life Reminders to the battery optimization exclusion list:</p>
+        <ul>
+            <li><strong>Samsung</strong>: Settings → Apps → Life Reminders → Battery → set to <em>Unrestricted</em></li>
+            <li><strong>Xiaomi / MIUI</strong>: Settings → Apps → Manage apps → Life Reminders → Battery saver → <em>No restrictions</em>, plus Autostart → <em>On</em></li>
+            <li><strong>OnePlus / OxygenOS</strong>: Settings → Apps → Life Reminders → Battery → Battery optimization → <em>Don't optimize</em></li>
+            <li><strong>Pixel / stock Android</strong>: usually works without intervention</li>
+        </ul>
     </div>
+
+    <h2>Plans &amp; Purchases</h2>
 
     <div class="card">
         <h3>How do I restore my Pro purchase?</h3>
-        <p>Settings → Your Plan → "Restore Purchases." Use the same Apple ID as the original purchase. Pro is a Family Sharing-compatible purchase, so family members on the same Apple Family can share it.</p>
-    </div>
-
-    <div class="card">
-        <h3>Is my data backed up?</h3>
-        <p>Free and Ad-Supported plans: data is stored on-device and included in iCloud/iTunes device backups. Pro plan: data is automatically synced to your private iCloud database and available on all your devices.</p>
+        <p><span class="platform-tag ios">iOS</span> Settings → Your Plan → "Restore Purchases." Use the same Apple ID as the original purchase.</p>
+        <p><span class="platform-tag android">Android</span> Settings → Plan → "Restore previous purchase." Use the same Google account that bought it.</p>
+        <p>Pro is Family Sharing compatible on both platforms — family members on the same Apple Family or Google Play Family can install Life Reminders for free and they'll automatically inherit Pro on their own devices.</p>
     </div>
 
     <div class="card">
         <h3>How do I remove ads?</h3>
-        <p>Settings → Your Plan → "Upgrade to Pro" ($4.99 one-time). Removes ads, unlocks unlimited reminders, and enables iCloud sync across all devices.</p>
+        <p>Settings → Plan → "Upgrade to Pro" ($4.99 one-time). Removes ads, unlocks unlimited reminders. On iOS, also enables iCloud sync across all your Apple devices.</p>
+    </div>
+
+    <h2>Sync &amp; Multi-Device</h2>
+
+    <div class="card">
+        <h3><span class="platform-tag ios">iOS Pro</span> How does iCloud sync work?</h3>
+        <p>Life Reminders Pro on iOS uses iCloud to sync your reminders across iPhone, iPad, Mac, and Apple Watch. Add a reminder on your iPhone, complete it on your Mac, check it on your Watch — all in real-time. Each device schedules its own local notifications, so you'll get alerts wherever you are.</p>
     </div>
 
     <div class="card">
-        <h3>Does voice input need internet?</h3>
-        <p>No. All voice processing is on-device via Apple's SFSpeechRecognizer. Works on iPhone, iPad, and Mac.</p>
+        <h3><span class="platform-tag android">Android</span> Can I sync between my Android phone and tablet?</h3>
+        <p>Not yet. Sync between Android devices and the Android ↔ iOS bridge are both planned for version 1.1 via an optional Google Drive integration. For now, your Android reminders live only on the device where you created them. On iOS, sync is available for Apple Pro users.</p>
     </div>
 
     <div class="card">
-        <h3>Does Apple Watch have voice input?</h3>
-        <p>Not directly within Life Reminders. Use voice input on your iPhone or Mac — the reminder will sync to your Watch automatically (Pro plan).</p>
+        <h3><span class="platform-tag both">iOS &amp; Android</span> I have an iPhone AND an Android phone — can I use both?</h3>
+        <p>You can install Life Reminders on both, but until v1.1 ships cross-platform sync, you'll need to manage reminders separately on each device. Both apps have the same 60+ categories and the same voice input, so the experience is consistent — only the data is per-device for now.</p>
+    </div>
+
+    <h2>Voice Input</h2>
+
+    <div class="card">
+        <h3>Voice isn't recognizing my speech</h3>
+        <ul>
+            <li><span class="platform-tag both">iOS &amp; Android</span> Make sure microphone permission is granted in your phone's Settings → Apps → Life Reminders → Permissions → Microphone.</li>
+            <li>Speak <em>after</em> you tap the mic button, not before — recording only starts after the button bounces.</li>
+            <li>If the parsed date is wrong, you can edit it before tapping Save — voice parsing is a starting point, not the final answer.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>Does voice need internet?</h3>
+        <p><span class="platform-tag ios">iOS</span> No. Voice runs entirely on-device via Apple's SFSpeechRecognizer.</p>
+        <p><span class="platform-tag android">Android</span> On Android 12 and newer (Pixel, modern Samsung, Xiaomi, etc.), voice runs entirely on-device — your audio never leaves your phone. On Android 8–11, the app requests offline-preferred recognition but the device may fall back to Google's cloud speech service if the on-device model isn't available.</p>
+    </div>
+
+    <h2>Region-Specific Categories</h2>
+
+    <div class="card">
+        <h3>How do I see categories like PAN Card / MOT Test / TÜV?</h3>
+        <p>Life Reminders auto-detects your storefront region from your phone's locale settings. To switch regions:</p>
+        <p><span class="platform-tag ios">iOS</span> Settings → General → Language &amp; Region → Region → pick your target country.</p>
+        <p><span class="platform-tag android">Android</span> Settings → System → Languages &amp; input → Languages → add a language for your target region (e.g., English (India)) and drag it to the top.</p>
+        <p>Region-specific categories appear automatically: PAN Card / Aadhaar / PUC for India, MOT / TV Licence for the UK, TÜV for Germany, Contrôle Technique / Ramonage for France, COE for Singapore, Smog Check / FSA Funds for the US.</p>
     </div>
 
     <h2>Plans</h2>
@@ -133,24 +175,41 @@
             </tr>
             <tr style="border-bottom:1px solid #ddd;">
                 <td style="padding:8px"><strong>Ad-Supported</strong></td>
-                <td>20 reminders, banner ads</td>
+                <td>20 reminders, one ad on the dashboard</td>
                 <td>$0</td>
             </tr>
             <tr>
                 <td style="padding:8px"><strong>Pro</strong></td>
-                <td>Unlimited reminders, no ads, iCloud sync across all devices</td>
+                <td>Unlimited reminders, no ads, iCloud sync (Apple devices), Family Sharing</td>
                 <td>$4.99 (local currency)</td>
             </tr>
         </table>
     </div>
 
+    <h2>What's not yet supported</h2>
+    <div class="card">
+        <p>Being upfront about gaps so you know what to expect from version 1.0:</p>
+        <ul>
+            <li><strong>Cross-platform sync (Android ↔ iOS)</strong> — coming in v1.1</li>
+            <li><strong>Sync between Android devices</strong> — coming in v1.1</li>
+            <li><strong>Wear OS companion app</strong> — Apple Watch ships with v1; Wear OS is on the v2 roadmap</li>
+            <li><strong>Themed icons for Material You (Android 13+)</strong> — the launcher icon shows in full color, not the wallpaper-tinted monochrome variant. Polish item for v1.1.</li>
+            <li><strong>Shared ads ID across the household</strong> — Family Sharing of the Pro purchase works on both platforms, but the ad-supported tier is per-device.</li>
+        </ul>
+    </div>
+
     <div class="contact-box">
         <h3>Contact</h3>
         <p>Email: <a href="mailto:lifereminders@sushantjoshi.com"><strong>lifereminders@sushantjoshi.com</strong></a></p>
+        <p>Or open an issue on GitHub:</p>
+        <ul>
+            <li>iOS: <a href="https://github.com/sushant-joshi/LifeReminders">github.com/sushant-joshi/LifeReminders</a></li>
+            <li>Android: <a href="https://github.com/sushant-joshi/LifeRemindersAndroid">github.com/sushant-joshi/LifeRemindersAndroid</a></li>
+        </ul>
     </div>
 
     <p style="margin-top:40px; color:#86868b; font-size:13px; text-align:center;">
-        <a href="privacy.html">Privacy Policy</a> · <a href="index.html">Home</a>
+        <a href="index.html">← Home</a> · <a href="privacy.html">Privacy Policy</a>
     </p>
 </body>
 </html>
